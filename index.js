@@ -102,6 +102,52 @@ app.post("/adduser", function (req, res) {
   );
 });
 
+/********************************************/
+// PUT Muuta käyttäjän tietoja
+/********************************************/
+
+app.put("/users/:id", function (req, res) {
+  let muutettuId = req.body.id;
+  let muutettuNimi = req.body.nimi;
+  let muutettuNro = req.body.puhelin;
+  con.query(
+    "UPDATE henkilot SET id = " +
+      muutettuId +
+      ", nimi = '" +
+      muutettuNimi +
+      "', puhelin = '" +
+      muutettuNro +
+      "' WHERE id=" +
+      muutettuId +
+      ";",
+    (err, rows) => {
+      if (err) throw err;
+      return res.send({
+        message: "Muutit käyttäjän tietoja seuraavasti:",
+        data: rows,
+      });
+    }
+  );
+});
+
+/********************************************/
+// DELETE Poista käyttäjä
+/********************************************/
+
+app.delete("/deluser/:id", function (req, res) {
+  let poistettava = req.params.id;
+  con.query(
+    "DELETE FROM henkilot WHERE id=" + poistettava + ";",
+    (err, rows) => {
+      if (err) throw err;
+      return res.send({
+        message: "Poisto onnistui!",
+        data: rows,
+      });
+    }
+  );
+});
+
 // con.query("SELECT * FROM henkilot", (err, rows) => {
 //   if (err) throw err;
 
