@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Puhelinluettelo</title>
+
+    <!-- INCLUDING JQUERY-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- CSS FOR STYLING THE PAGE -->
+    <style>
+      h1 {
+        text-align: center;
+      }
+
+      table,
+      td {
+        font-size: 110%;
+        margin: auto;
+        table-layout: auto;
+        width: 70%;
+        padding: 1px;
+        border: 1px solid black;
+        border-collapse: collapse;
+        background-color: #4d5d53;
+        text-align: center;
+        color: white;
+      }
+
+      th {
+        font-size: 2em;
+        color: #4d5d53;
+        background-color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      $(document).ready(function () {
+        // FETCHING DATA FROM JSON FILE
+        $.getJSON("http://localhost:3000/users", function (data) {
+          //var items = [];
+          console.log(data);
+          // data on se mitä käsitellään ja funktio se mitä tehdään jokaiselle ?riville?
+          $.each(data, function (index, value) {
+            $("<tr><td>" + index + " </td> <td>" + value + "</td></tr>", {
+              //   id: "table",
+              //html: data.join(""),
+            }).appendTo("table");
+          });
+          // items.push("<tr><td>" + index + " </td> <td>" + value + "</td>");
+          // items.push("<tr id='" + id + "'>" + val + "</tr>");
+        });
+      });
+    </script>
+
+    <h1>Puhelinluettelo</h1>
+
+    <!-- TABLE CONSTRUCTION-->
+    <section id="table-show">
+      <table id="table">
+        <tr>
+          <th>Nimi</th>
+          <th>Puhelin</th>
+        </tr>
+      </table>
+    </section>
+  </body>
+</html>
