@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="fi">
   <head>
     <meta charset="UTF-8" />
@@ -38,6 +38,28 @@
   <body>
     <script>
       $(document).ready(function () {
+        $.getJSON("http://localhost:3000/users", function (data) {
+          var tr;
+          console.log(JSON.stringify(data));
+          var items = JSON.stringify(data);
+          for (var i = 0; i < items.length; i++) {
+            tr = $("<tr/>");
+            tr.append("<td>" + items[i].nimi + "</td>");
+            tr.append("<td>" + items[i].puhelin + "</td>");
+            $("#table").append(tr);
+          }
+          // items = data.rows;
+          // console.log(data);
+          // $.each(items, function (id, value) {
+          //   $("<tr><td>" + id + "</td> <td>" + value + "</td></tr>", {
+          //     id: "table",
+          //     html: value.join(""),
+          //   }).appendTo("table");
+          // });
+        });
+      });
+      /* and the initial approach to the problem
+      $(document).ready(function () {
         // FETCHING DATA FROM JSON FILE
         $.getJSON("http://localhost:3000/users", function (data) {
           //var items = [];
@@ -53,6 +75,8 @@
           // items.push("<tr id='" + id + "'>" + val + "</tr>");
         });
       });
+
+      */
     </script>
 
     <h1>Puhelinluettelo</h1>
