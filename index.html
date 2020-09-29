@@ -37,46 +37,43 @@
 
   <body>
     <script>
-      $(document).ready(function () {
-        $.getJSON("http://localhost:3000/users", function (data) {
-          var tr;
-          console.log(JSON.stringify(data));
-          var items = JSON.stringify(data);
-          for (var i = 0; i < items.length; i++) {
-            tr = $("<tr/>");
-            tr.append("<td>" + items[i].nimi + "</td>");
-            tr.append("<td>" + items[i].puhelin + "</td>");
-            $("#table").append(tr);
-          }
-          // items = data.rows;
-          // console.log(data);
-          // $.each(items, function (id, value) {
-          //   $("<tr><td>" + id + "</td> <td>" + value + "</td></tr>", {
-          //     id: "table",
-          //     html: value.join(""),
-          //   }).appendTo("table");
-          // });
-        });
-      });
-      /* and the initial approach to the problem
+      // ***** The FOR-loop solution *****
+      // $(document).ready(function () {
+      //   $.getJSON("http://localhost:3000/users", function (data) {
+      //     var tr;
+      //     var items = "";
+      //     for (var i = 0; i < data.length; i++) {
+      //       tr = $("<tr/>");
+      //       tr.append("<td>" + data[i].nimi + "</td>");
+      //       tr.append("<td>" + data[i].puhelin + "</td>");
+      //       $("#table").append(tr);
+      //     }
+      //   });
+      // });
+
+      /* @mikkoant
+      Käyttöliittymässä sinun kannattaa tehdä apumuuttuja siellä eli
+
+      var hlo= "";
+      hlo=....
+      //kasaa tässä taulukon rivi liittämällä data ja tagit +:lla yhteen
+      
+      */
+      //***** and the initial approach to the problem *****
       $(document).ready(function () {
         // FETCHING DATA FROM JSON FILE
         $.getJSON("http://localhost:3000/users", function (data) {
-          //var items = [];
+          var items = "";
           console.log(data);
           // data on se mitä käsitellään ja funktio se mitä tehdään jokaiselle ?riville?
           $.each(data, function (index, value) {
-            $("<tr><td>" + index + " </td> <td>" + value + "</td></tr>", {
-              //   id: "table",
-              //html: data.join(""),
-            }).appendTo("table");
+            tr = $("<tr/>");
+            tr.append("<td>" + data[index].nimi + "</td>");
+            tr.append("<td>" + data[index].puhelin + "</td>");
+            $("#table").append(tr);
           });
-          // items.push("<tr><td>" + index + " </td> <td>" + value + "</td>");
-          // items.push("<tr id='" + id + "'>" + val + "</tr>");
         });
       });
-
-      */
     </script>
 
     <h1>Puhelinluettelo</h1>

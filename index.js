@@ -68,7 +68,7 @@ app.get("/users", function (req, res) {
     if (err) throw err;
     // tämä palauttaa selaimelle/clientille haun tulokset jotka menevät 'rows' kyydissä
     // message tulostaa loppuun vielä annetun mietelauseen
-    return res.send({ error: false, data: rows, message: "users list." });
+    return res.json(rows);
     // pukeltaa datan tietokannasta konsoliin, tässä varmistuksena
     // console.log("Data received from Db:");
     // rows.forEach((row) => {
