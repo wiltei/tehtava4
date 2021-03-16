@@ -42,8 +42,8 @@ app.use(function (req, res, next) {
 // Be sure to replace 'user' and 'password' with the correct values
 const con = mysql.createConnection({
   host: "localhost",
-  user: "teivavi",
-  password: "incorrect!",
+  user: "admin",
+  password: "default",
   database: "puhelinluettelo",
   multipleStatements: true, //out parametria varten aliohjelmassa
 });
